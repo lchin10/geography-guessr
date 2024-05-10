@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/geoguessr/static/css/main.c2ec96eb.css",
+    "main.js": "/geoguessr/static/js/main.700d2306.js",
+    "static/js/787.48b22501.chunk.js": "/geoguessr/static/js/787.48b22501.chunk.js",
+    "static/media/front_page_bg.png": "/geoguessr/static/media/front_page_bg.51191204222e968d4e43.png",
+    "index.html": "/geoguessr/index.html",
+    "main.c2ec96eb.css.map": "/geoguessr/static/css/main.c2ec96eb.css.map",
+    "main.700d2306.js.map": "/geoguessr/static/js/main.700d2306.js.map",
+    "787.48b22501.chunk.js.map": "/geoguessr/static/js/787.48b22501.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c2ec96eb.css",
+    "static/js/main.700d2306.js"
+  ]
+}
