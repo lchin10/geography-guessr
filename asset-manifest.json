@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/geoguessr/static/css/main.c2ec96eb.css",
-    "main.js": "/geoguessr/static/js/main.69305762.js",
+    "main.css": "/geoguessr/static/css/main.d4070c76.css",
+    "main.js": "/geoguessr/static/js/main.96581db7.js",
     "static/js/453.fe88d62f.chunk.js": "/geoguessr/static/js/453.fe88d62f.chunk.js",
     "static/media/front_page_bg.png": "/geoguessr/static/media/front_page_bg.51191204222e968d4e43.png",
     "index.html": "/geoguessr/index.html",
-    "main.c2ec96eb.css.map": "/geoguessr/static/css/main.c2ec96eb.css.map",
-    "main.69305762.js.map": "/geoguessr/static/js/main.69305762.js.map",
+    "main.d4070c76.css.map": "/geoguessr/static/css/main.d4070c76.css.map",
+    "main.96581db7.js.map": "/geoguessr/static/js/main.96581db7.js.map",
     "453.fe88d62f.chunk.js.map": "/geoguessr/static/js/453.fe88d62f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2ec96eb.css",
-    "static/js/main.69305762.js"
+    "static/css/main.d4070c76.css",
+    "static/js/main.96581db7.js"
   ]
 }
