@@ -1,0 +1,30 @@
+name: React Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+          node-version: '14'
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies and build React app
+      run: |
+        npm install
+        npm run build
+    
+    - name: Deploy GitHub Pages site
+      uses: JamesIves/github-pages-deploy-action@4.1.1
+      with:
+        branch: gh-pages
+        folder: build
