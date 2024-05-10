@@ -77,7 +77,7 @@ const GamePage = () => {
 
     const handleSubmit = () => {
         // Navigate to another page with map position and marker position
-        navigate(`/result?mapPosition=${JSON.stringify(center)}&markerPosition=${JSON.stringify(markerPosition)}`);
+        navigate(`/geoguessr/result?mapPosition=${JSON.stringify(center)}&markerPosition=${JSON.stringify(markerPosition)}`);
     };
 
     if (loadError) {
@@ -107,7 +107,7 @@ const GamePage = () => {
                     )}
 
                 <div className="button-container">
-                    <button className="back-button" onClick={() => { window.location.href = '/'; }}>Go back to home</button>
+                    <button className="back-button" onClick={() => { window.location.href = '/geoguessr'; }}>Go back to home</button>
                 </div>
                 
                 <div 

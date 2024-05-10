@@ -102,8 +102,8 @@ const SubmitPage = () => {
             <div>City: {city}</div>
             <h3>Score</h3>
             <p>{score}</p>
-            <button className="button" onClick={() => { window.location.href = '/game'; }}>Play Again</button><br></br><br></br>
-            <button className="button" onClick={() => { window.location.href = '/'; }}>Go Home</button>
+            <button className="button" onClick={() => { window.location.href = '/geoguessr/game'; }}>Play Again</button><br></br><br></br>
+            <button className="button" onClick={() => { window.location.href = '/geoguessr'; }}>Go Home</button>
         </div>
     );
 };

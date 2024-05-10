@@ -12,9 +12,9 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route exact path="/" element={<HomePage />} />
-                <Route path="/game" element={<GamePage />} />
-                <Route path="/result" element={<SubmitPage />} />
+                <Route exact path="/geoguessr" element={<HomePage />} />
+                <Route path="/geoguessr/game" element={<GamePage />} />
+                <Route path="/geoguessr/result" element={<SubmitPage />} />
             </Routes>
         </Router>
     );
