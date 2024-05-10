@@ -1,16 +1,164 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import '../styles/Game.css';
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import Streetview from 'react-google-streetview';
 
-function App() {
+const libraries = ['places'];
+
+const getRandomValidLocation = async () => {
+    // Generate random latitude and longitude within the valid range (-90 to 90 for latitude, -180 to 180 for longitude)
+    const randomLat = Math.random() * (90 * 2) - 90;
+    const randomLng = Math.random() * (180 * 2) - 180;
+
+    // Check if the random location has a Street View panorama
+    const service = new window.google.maps.StreetViewService();
+    const panorama = await new Promise((resolve, reject) => {
+        service.getPanorama({ location: { lat: randomLat, lng: randomLng } }, (data, status) => {
+            if (status === 'OK') {
+                resolve(data.location.latLng);
+            } else {
+                reject();
+            }
+        });
+    });
+
+    // Return the valid location
+    return panorama;
+};
+
+const GamePage = () => {
+    const navigate = useNavigate(); // Use useNavigate instead of useHistory
+    const [isHovered, setIsHovered] = useState(false);
+    const [center, setCenter] = useState(null);
+    const [markerPosition, setMarkerPosition] = useState(null);
+    const [showSubmitButton, setShowSubmitButton] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const { isLoaded, loadError } = useLoadScript({
+        googleMapsApiKey: 'AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY',
+        libraries,
+    });
+
+    const mapDim = isHovered ? 50 : 20;
+    const mapContainerStyle = {
+        width: mapDim.toString() + 'vw',
+        height: mapDim.toString() + 'vh',
+    };
+
+    useEffect(() => {
+        const fetchRandomLocation = async () => {
+            let validLocation = null;
+            while (!validLocation) {
+                try {
+                    const location = await getRandomValidLocation();
+                    validLocation = location;
+                } catch (error) {
+                    console.error('Error fetching random valid location:', error);
+                }
+            }
+            setCenter({ lat: validLocation.lat(), lng: validLocation.lng() });
+            setIsLoading(false);
+        };
+    
+        if (isLoaded && !loadError) {
+            fetchRandomLocation();
+        }
+    }, [isLoaded, loadError]);
+
+    // if (isLoading) {
+    //     return <div>Grabbing map...</div>;
+    // }
+
+    const handleMapClick = (event) => {
+        const clickedLatLng = event.latLng.toJSON();
+        setMarkerPosition(clickedLatLng);
+        setShowSubmitButton(true);
+    };
+
+    const handleSubmit = () => {
+        // Navigate to another page with map position and marker position
+        navigate(`/result?mapPosition=${JSON.stringify(center)}&markerPosition=${JSON.stringify(markerPosition)}`);
+    };
+
+    if (loadError) {
+        return <div>Error loading maps</div>;
+    }
+
+    if (!isLoaded) {
+        return <div>Loading maps</div>;
+    }
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <h1 id="page-title" >
-                    GEOGUESSR
-                </h1>
-                <p>wtfffff</p>
-            </header>
+        <div className="Game">
+            <div className="map-container">
+                <div className="name-hider"></div>
+                {isLoading && <MapLoader />}
+                {!isLoading && (
+                    <Streetview
+                        apiKey="AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY"
+                        streetViewPanoramaOptions={{
+                            position: center,
+                            pov: { heading: 100, pitch: 0 },
+                            zoom: 1,
+                            streetViewControl: false,
+                            showRoadLabels: false
+                        }}
+                    />
+                    )}
+
+                <div className="button-container">
+                    <button className="back-button" onClick={() => { window.location.href = '/'; }}>Go back to home</button>
+                </div>
+                
+                <div 
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    className="submit-location" style={mapContainerStyle}>
+                    <div
+                        className="location-pick"
+                        style={mapContainerStyle} // Apply dynamic width and height
+                    >
+                        <GoogleMap
+                            mapContainerStyle={{ width: '100%', height: '100%' }} // Set map container to fill its parent
+                            zoom={1}
+                            center={{lat: 0, lng: 0}}
+                            onClick={handleMapClick}
+                        >
+                            {markerPosition && <Marker position={markerPosition} />}
+                        </GoogleMap>
+                    </div>
+
+                    {showSubmitButton && markerPosition && (
+                        <button className="submit-button" onClick={handleSubmit}>Submit</button>
+                    )}
+                    </div>
+            </div>
         </div>
     );
-}
+};
 
-export default App;
+const MapLoader = () => {
+    const [dots, setDots] = useState(".");
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setDots((prevDots) => {
+          if (prevDots === "...") {
+            return ".";
+          } else {
+            return prevDots + ".";
+          }
+        });
+      }, 500);
+  
+      return () => clearInterval(interval);
+    }, []);
+  
+    return (
+      <div className="map-load-container">
+        <div className="map-load">Grabbing map{dots}</div>
+      </div>
+    );
+  };
+
+export default GamePage;
