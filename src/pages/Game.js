@@ -73,7 +73,7 @@ const GamePage = () => {
 
         setTimeout(() => {
             setNewCenter(null);
-        }, 800);
+        }, 1000);
     };
 
     const handleMapClick = (e) => {

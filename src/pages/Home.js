@@ -15,7 +15,9 @@ const HomePage = () => {
                     </div>
                 </div>
                 <h1 id="page-title" >
-                    GEOGUESSR
+                    GEOGRAPHY<br></br>
+                    GUESSR<br></br>
+                    GAME
                 </h1>
                 <button onClick={startButton} id="start-button" >START</button>
             </header>

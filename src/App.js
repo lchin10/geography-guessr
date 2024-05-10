@@ -3,7 +3,6 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
-import './App.css';
 import HomePage from './pages/Home';
 import GamePage from './pages/Game';
 import SubmitPage from './pages/Submit';
