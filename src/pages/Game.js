@@ -5,6 +5,7 @@ import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import Streetview from 'react-google-streetview';
 
 const libraries = ['places'];
+let tempCenter = {lat: 0, lng: 0};
 
 const getRandomValidLocation = async () => {
     // Generate random latitude and longitude within the valid range (-90 to 90 for latitude, -180 to 180 for longitude)
@@ -31,6 +32,7 @@ const GamePage = () => {
     const navigate = useNavigate(); // Use useNavigate instead of useHistory
     const [isHovered, setIsHovered] = useState(false);
     const [center, setCenter] = useState(null);
+    const [newCenter, setNewCenter] = useState(null);
     const [markerPosition, setMarkerPosition] = useState(null);
     const [showSubmitButton, setShowSubmitButton] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -57,6 +59,7 @@ const GamePage = () => {
                 }
             }
             setCenter({ lat: validLocation.lat(), lng: validLocation.lng() });
+            tempCenter = { lat: validLocation.lat(), lng: validLocation.lng() };
             setIsLoading(false);
         };
     
@@ -65,18 +68,21 @@ const GamePage = () => {
         }
     }, [isLoaded, loadError]);
 
-    // if (isLoading) {
-    //     return <div>Grabbing map...</div>;
-    // }
+    const setStreetViewPosition = () => {
+        setNewCenter(tempCenter);
 
-    const handleMapClick = (event) => {
-        const clickedLatLng = event.latLng.toJSON();
+        setTimeout(() => {
+            setNewCenter(null);
+        }, 800);
+    };
+
+    const handleMapClick = (e) => {
+        const clickedLatLng = e.latLng.toJSON();
         setMarkerPosition(clickedLatLng);
         setShowSubmitButton(true);
     };
 
     const handleSubmit = () => {
-        // Navigate to another page with map position and marker position
         navigate(`/geoguessr/result?mapPosition=${JSON.stringify(center)}&markerPosition=${JSON.stringify(markerPosition)}`);
     };
 
@@ -91,20 +97,25 @@ const GamePage = () => {
     return (
         <div className="Game">
             <div className="map-container">
-                <div className="name-hider"></div>
                 {isLoading && <MapLoader />}
                 {!isLoading && (
                     <Streetview
                         apiKey="AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY"
                         streetViewPanoramaOptions={{
-                            position: center,
+                            position: newCenter || center,
                             pov: { heading: 100, pitch: 0 },
                             zoom: 1,
                             streetViewControl: false,
-                            showRoadLabels: false
+                            showRoadLabels: false,
+                            zoomControl: false,
+                            fullscreenControl: false,
+                            addressControl: false
                         }}
                     />
-                    )}
+                )}
+                {!isLoading && (
+                    <button className="reset-street-view" onClick={setStreetViewPosition}>Reset Street View</button>
+                )}
 
                 <div className="button-container">
                     <button className="back-button" onClick={() => { window.location.href = '/geoguessr'; }}>Go back to home</button>
@@ -121,8 +132,14 @@ const GamePage = () => {
                         <GoogleMap
                             mapContainerStyle={{ width: '100%', height: '100%' }} // Set map container to fill its parent
                             zoom={1}
-                            center={{lat: 0, lng: 0}}
+                            center={markerPosition || { lat: 0, lng: 0 }}
                             onClick={handleMapClick}
+                            options={{
+                                disableDefaultUI: true,
+                                mapTypeControl: false,
+                                streetViewControl: false,
+                                fullscreenControl: false
+                            }}
                         >
                             {markerPosition && <Marker position={markerPosition} />}
                         </GoogleMap>
@@ -131,7 +148,7 @@ const GamePage = () => {
                     {showSubmitButton && markerPosition && (
                         <button className="submit-button" onClick={handleSubmit}>Submit</button>
                     )}
-                    </div>
+                </div>
             </div>
         </div>
     );

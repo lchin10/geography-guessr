@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
 const libraries = ['places'];
+let counter = 0;
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371; // Radius of the Earth in kilometers
@@ -32,6 +33,7 @@ const SubmitPage = () => {
     const [city, setCity] = useState("");
     const [currMapPosition, setMapPosition] = useState(null);
     const [currMarkerPosition, setMarkerPosition] = useState(null);
+    const [timeoutSet, setTimeoutSet] = useState(false);
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: 'AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY',
         libraries,
@@ -70,14 +72,21 @@ const SubmitPage = () => {
     }, [mapPosition.lat, mapPosition.lng]);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setMapPosition(mapPosition);
-            setMarkerPosition(markerPosition);
-        }, 1000);
-
-        return () => clearTimeout(timer);
-
-    }, [mapPosition, markerPosition]);
+        if (!timeoutSet) {
+            const timer = setInterval(() => {
+                if (counter < 2) {
+                    setMapPosition(mapPosition);
+                    setMarkerPosition(markerPosition);
+                    counter++;
+                } else {
+                    clearInterval(timer);
+                    setTimeoutSet(true);
+                }
+            }, 1000);
+        
+            return () => clearInterval(timer);
+        }
+      }, [timeoutSet, mapPosition, markerPosition]);
 
     if (loadError) {
         return <div>Error loading maps</div>;
