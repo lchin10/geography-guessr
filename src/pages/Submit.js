@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Link } from 'react-router-dom';
 // import '../styles/Home.css';
 import { useLocation } from "react-router-dom";
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
@@ -38,6 +39,36 @@ const SubmitPage = () => {
         googleMapsApiKey: 'AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY',
         libraries,
     });
+
+    useEffect(() => {
+        if (!mapPosition || !markerPosition) {
+            return (
+                <div>
+                    <button className="button">
+                        <Link to="/geoguessr/game">Play Again</Link>
+                        Play Again
+                    </button><br></br><br></br>
+                    <button className="button">
+                        <Link to="/geoguessr">Go Home</Link>
+                    </button>
+                </div>
+            );
+        }
+    }, [mapPosition, markerPosition]);
+
+    // if (mapPosition == null) {
+    //     return (
+    //         <div>
+    //             <button className="button">
+    //                 <Link to="/geoguessr/game">Play Again</Link>
+    //                 Play Again
+    //             </button><br></br><br></br>
+    //             <button className="button">
+    //                 <Link to="/geoguessr">Go Home</Link>
+    //             </button>
+    //         </div>
+    //     );
+    // }
 
     const distance = calculateDistance(mapPosition.lat, mapPosition.lng, markerPosition.lat, markerPosition.lng);
     const score = calculateScore(distance);
@@ -86,7 +117,7 @@ const SubmitPage = () => {
         
             return () => clearInterval(timer);
         }
-      }, [timeoutSet, mapPosition, markerPosition]);
+    }, [timeoutSet, mapPosition, markerPosition]);
 
     if (loadError) {
         return <div>Error loading maps</div>;
@@ -111,8 +142,12 @@ const SubmitPage = () => {
             <div>City: {city}</div>
             <h3>Score</h3>
             <p>{score}</p>
-            <button className="button" onClick={() => { window.location.href = '/geoguessr/game'; }}>Play Again</button><br></br><br></br>
-            <button className="button" onClick={() => { window.location.href = '/geoguessr'; }}>Go Home</button>
+            <button className="button">
+                <Link to="/geoguessr/game">Play Again</Link>
+            </button><br></br><br></br>
+            <button className="button">
+                <Link to="/geoguessr">Go Home</Link>
+            </button>
         </div>
     );
 };
