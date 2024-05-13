@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import '../styles/Game.css';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import Streetview from 'react-google-streetview';
+import DinoGame from './dino/Dino';
 
 const libraries = ['places'];
 let tempCenter = {lat: 0, lng: 0};
@@ -73,7 +74,7 @@ const GamePage = () => {
 
         setTimeout(() => {
             setNewCenter(null);
-        }, 1000);
+        }, 2000);
     };
 
     const handleMapClick = (e) => {
@@ -98,6 +99,8 @@ const GamePage = () => {
         <div className="Game">
             <div className="map-container">
                 {isLoading && <MapLoader />}
+                {isLoading && <div>Press the space bar to start the mini-game</div>}
+                {isLoading && <DinoGame />}
                 {!isLoading && (
                     <Streetview
                         apiKey="AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY"
