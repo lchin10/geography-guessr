@@ -71,14 +71,6 @@ const GamePage = () => {
     const [showSubmitButton, setShowSubmitButton] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
-    useEffect(() => {
-        if (!GOOGLE_MAPS_API_KEY) {
-            // eslint-disable-next-line no-console
-            console.error('Google Maps API key is missing. Set REACT_APP_GOOGLE_MAPS_API_KEY in your .env and restart the dev server.');
-        }
-    }, [GOOGLE_MAPS_API_KEY]);
-
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         libraries,

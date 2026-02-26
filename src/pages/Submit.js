@@ -35,8 +35,9 @@ const SubmitPage = () => {
     const [currMapPosition, setMapPosition] = useState(null);
     const [currMarkerPosition, setMarkerPosition] = useState(null);
     const [timeoutSet, setTimeoutSet] = useState(false);
+    const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: 'AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY',
+        googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         libraries,
     });
 
