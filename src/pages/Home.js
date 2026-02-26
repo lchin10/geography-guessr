@@ -9,9 +9,9 @@ const HomePage = () => {
                 <div id="overlay" onClick={overlayOff} >
                     <div>Difficulty:</div>
                     <div id="difficulty-box" >
-                        <Link to="/geoguessr/game" id="easy" className="column">Easy</Link>
-                        <Link to="/geoguessr/game" id="medium" className="column">Medium</Link>
-                        <Link to="/geoguessr/game" id="hard" className="column">Hard</Link>
+                        <Link to="/geography-guessr/game" id="easy" className="column">Easy</Link>
+                        <Link to="/geography-guessr/game" id="medium" className="column">Medium</Link>
+                        <Link to="/geography-guessr/game" id="hard" className="column">Hard</Link>
                     </div>
                 </div>
                 <h1 id="page-title" >

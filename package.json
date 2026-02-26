@@ -1,7 +1,7 @@
 {
   "name": "geoguessr",
   "version": "0.1.0",
-  "homepage": "https://lchin10.github.io/geoguessr",
+  "homepage": "https://lchin10.github.io/geography-guessr",
   "private": true,
   "dependencies": {
     "@react-google-maps/api": "^2.19.3",

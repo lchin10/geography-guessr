@@ -11,9 +11,9 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/geoguessr" element={<HomePage />} />
-                <Route path="/geoguessr/game" element={<GamePage />} />
-                <Route path="/geoguessr/result" element={<SubmitPage />} />
+                <Route path="/geography-guessr" element={<HomePage />} />
+                <Route path="/geography-guessr/game" element={<GamePage />} />
+                <Route path="/geography-guessr/result" element={<SubmitPage />} />
             </Routes>
         </Router>
     );

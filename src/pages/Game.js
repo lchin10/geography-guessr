@@ -84,7 +84,7 @@ const GamePage = () => {
     };
 
     const handleSubmit = () => {
-        navigate(`/geoguessr/result?mapPosition=${JSON.stringify(center)}&markerPosition=${JSON.stringify(markerPosition)}`);
+        navigate(`/geography-guessr/result?mapPosition=${JSON.stringify(center)}&markerPosition=${JSON.stringify(markerPosition)}`);
     };
 
     if (loadError) {
@@ -121,7 +121,7 @@ const GamePage = () => {
                 )}
 
                 <div className="button-container">
-                    <button className="back-button" onClick={() => { window.location.href = '/geoguessr'; }}>Go back to home</button>
+                    <button className="back-button" onClick={() => { window.location.href = '/geography-guessr'; }}>Go back to home</button>
                 </div>
                 
                 <div 

@@ -45,11 +45,11 @@ const SubmitPage = () => {
             return (
                 <div>
                     <button className="button">
-                        <Link to="/geoguessr/game">Play Again</Link>
+                        <Link to="/geography-guessr/game">Play Again</Link>
                         Play Again
                     </button><br></br><br></br>
                     <button className="button">
-                        <Link to="/geoguessr">Go Home</Link>
+                        <Link to="/geography-guessr">Go Home</Link>
                     </button>
                 </div>
             );
@@ -60,11 +60,11 @@ const SubmitPage = () => {
     //     return (
     //         <div>
     //             <button className="button">
-    //                 <Link to="/geoguessr/game">Play Again</Link>
+    //                 <Link to="/geography-guessr/game">Play Again</Link>
     //                 Play Again
     //             </button><br></br><br></br>
     //             <button className="button">
-    //                 <Link to="/geoguessr">Go Home</Link>
+    //                 <Link to="/geography-guessr">Go Home</Link>
     //             </button>
     //         </div>
     //     );
@@ -143,10 +143,10 @@ const SubmitPage = () => {
             <h3>Score</h3>
             <p>{score}</p>
             <button className="button">
-                <Link to="/geoguessr/game">Play Again</Link>
+                <Link to="/geography-guessr/game">Play Again</Link>
             </button><br></br><br></br>
             <button className="button">
-                <Link to="/geoguessr">Go Home</Link>
+                <Link to="/geography-guessr">Go Home</Link>
             </button>
         </div>
     );
