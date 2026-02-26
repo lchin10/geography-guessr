@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/geoguessr/static/css/main.a6f07e89.css",
-    "main.js": "/geoguessr/static/js/main.b5416be0.js",
-    "static/js/453.6310fc9b.chunk.js": "/geoguessr/static/js/453.6310fc9b.chunk.js",
-    "static/media/front_page_bg.png": "/geoguessr/static/media/front_page_bg.51191204222e968d4e43.png",
-    "index.html": "/geoguessr/index.html",
-    "main.a6f07e89.css.map": "/geoguessr/static/css/main.a6f07e89.css.map",
-    "main.b5416be0.js.map": "/geoguessr/static/js/main.b5416be0.js.map",
-    "453.6310fc9b.chunk.js.map": "/geoguessr/static/js/453.6310fc9b.chunk.js.map"
+    "main.css": "/geography-guessr/static/css/main.dbfed5b1.css",
+    "main.js": "/geography-guessr/static/js/main.36179500.js",
+    "static/js/453.6310fc9b.chunk.js": "/geography-guessr/static/js/453.6310fc9b.chunk.js",
+    "static/media/front_page_bg.png": "/geography-guessr/static/media/front_page_bg.51191204222e968d4e43.png",
+    "index.html": "/geography-guessr/index.html",
+    "main.dbfed5b1.css.map": "/geography-guessr/static/css/main.dbfed5b1.css.map",
+    "main.36179500.js.map": "/geography-guessr/static/js/main.36179500.js.map",
+    "453.6310fc9b.chunk.js.map": "/geography-guessr/static/js/453.6310fc9b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a6f07e89.css",
-    "static/js/main.b5416be0.js"
+    "static/css/main.dbfed5b1.css",
+    "static/js/main.36179500.js"
   ]
 }
