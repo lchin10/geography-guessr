@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import '../styles/Game.css';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import Streetview from 'react-google-streetview';
 import DinoGame from './dino/Dino';
 
 const libraries = ['places'];
@@ -29,6 +28,40 @@ const getRandomValidLocation = async () => {
     return panorama;
 };
 
+const StreetViewWrapper = ({ options }) => {
+    const ref = React.useRef(null);
+    const panoramaRef = React.useRef(null);
+
+    useEffect(() => {
+        if (!window.google || !window.google.maps) return;
+        if (!ref.current) return;
+
+        if (!panoramaRef.current) {
+            panoramaRef.current = new window.google.maps.StreetViewPanorama(ref.current, options || {});
+        } else {
+            // update options when props change
+            panoramaRef.current.setOptions(options || {});
+        }
+    }, [options]);
+
+    useEffect(() => {
+        return () => {
+            if (panoramaRef.current) {
+                try {
+                    panoramaRef.current.setVisible && panoramaRef.current.setVisible(false);
+                } catch (e) {
+                    // ignore cleanup errors
+                }
+                panoramaRef.current = null;
+            }
+        };
+    }, []);
+
+    return (
+        <div ref={ref} style={{ width: '100%', height: '100%' }} />
+    );
+};
+
 const GamePage = () => {
     const navigate = useNavigate(); // Use useNavigate instead of useHistory
     const [isHovered, setIsHovered] = useState(false);
@@ -38,6 +71,13 @@ const GamePage = () => {
     const [showSubmitButton, setShowSubmitButton] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+
+    useEffect(() => {
+        if (!GOOGLE_MAPS_API_KEY) {
+            // eslint-disable-next-line no-console
+            console.error('Google Maps API key is missing. Set GOOGLE_MAPS_API_KEY in your .env and restart the dev server.');
+        }
+    }, [GOOGLE_MAPS_API_KEY]);
 
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: GOOGLE_MAPS_API_KEY,
@@ -104,9 +144,8 @@ const GamePage = () => {
                 {isLoading && <div>Press the space bar to start the mini-game</div>}
                 {isLoading && <DinoGame />}
                 {!isLoading && (
-                    <Streetview
-                        apiKey={GOOGLE_MAPS_API_KEY}
-                        streetViewPanoramaOptions={{
+                    <StreetViewWrapper
+                        options={{
                             position: newCenter || center,
                             pov: { heading: 100, pitch: 0 },
                             zoom: 1,
