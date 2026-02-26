@@ -37,8 +37,10 @@ const GamePage = () => {
     const [markerPosition, setMarkerPosition] = useState(null);
     const [showSubmitButton, setShowSubmitButton] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: 'AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY',
+        googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         libraries,
     });
 
@@ -103,7 +105,7 @@ const GamePage = () => {
                 {isLoading && <DinoGame />}
                 {!isLoading && (
                     <Streetview
-                        apiKey="AIzaSyCPHDPxo1GLqPj_HpZFagVMZ1jnEAZttkY"
+                        apiKey={GOOGLE_MAPS_API_KEY}
                         streetViewPanoramaOptions={{
                             position: newCenter || center,
                             pov: { heading: 100, pitch: 0 },
