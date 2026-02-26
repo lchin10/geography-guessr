@@ -70,12 +70,12 @@ const GamePage = () => {
     const [markerPosition, setMarkerPosition] = useState(null);
     const [showSubmitButton, setShowSubmitButton] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+    const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
     useEffect(() => {
         if (!GOOGLE_MAPS_API_KEY) {
             // eslint-disable-next-line no-console
-            console.error('Google Maps API key is missing. Set GOOGLE_MAPS_API_KEY in your .env and restart the dev server.');
+            console.error('Google Maps API key is missing. Set REACT_APP_GOOGLE_MAPS_API_KEY in your .env and restart the dev server.');
         }
     }, [GOOGLE_MAPS_API_KEY]);
 
