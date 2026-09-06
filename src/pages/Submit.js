@@ -93,7 +93,7 @@ const SubmitPage = () => {
     const distance = markerPosition
         ? calculateDistance(mapPosition.lat, mapPosition.lng, markerPosition.lat, markerPosition.lng)
         : null;
-    const score = markerPosition ? calculateScore(distance) : 0;
+    const score = markerPosition ? calculateScore(distance, difficulty) : 0;
 
     return (
         <div className="Submit">
@@ -118,7 +118,8 @@ const SubmitPage = () => {
             {markerPosition
                 ? <div>You were {Math.round(distance).toLocaleString()} km away</div>
                 : <div>Out of time — no guess</div>}
-            <h3>Score</h3>
+            {/* Modes score on different curves, so say which one this was. */}
+            <h3>Score ({difficulty})</h3>
             <p>{score}</p>
             <button className="button">
                 <Link to={`/geography-guessr/game?difficulty=${difficulty}`}>Play Again</Link>

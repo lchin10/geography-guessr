@@ -10,6 +10,16 @@ export const calculateDistance = (lat1, lon1, lat2, lon2) => {
     return R * c; // Distance in kilometers
 };
 
-// Exponential falloff: a near-miss is worth far more than a "close-ish" guess.
-// 1500 km is the half-life-ish knob — lower it to make scoring harsher.
-export const calculateScore = (distance) => Math.round(5000 * Math.exp(-distance / 1500));
+// Per-mode decay distance. Bigger = more forgiving.
+// hard matches easy on purpose: it draws the same random locations as medium and only
+// adds a timer, so it gets the demanding curve rather than a forgiveness bonus.
+const DECAY_KM = { easy: 2500, medium: 3500, hard: 2500 };
+
+// Exponent >1 flattens the curve near zero and steepens it further out: near-misses
+// stay cheap, wrong-continent guesses still collapse. At 1.0 this is the plain
+// exponential falloff, which decays fastest exactly where "right country, wrong end
+// of it" lands. Lower it toward 1.0 to make scoring harsher again.
+const SHAPE = 1.3;
+
+export const calculateScore = (distance, difficulty = 'medium') =>
+    Math.round(5000 * Math.exp(-Math.pow(distance / (DECAY_KM[difficulty] ?? DECAY_KM.medium), SHAPE)));
