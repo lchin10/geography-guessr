@@ -1,6 +1,6 @@
 # Geography Guessr
 
-This web app is a playable version of the famous GeoGuessr. Try it out [here](lchin10.github.io/geography-guessr/)
+This web app is a free playable version of the famous GeoGuessr. Try it out [here](https://lchin10.github.io/geography-guessr)
 
 ## Development
 
