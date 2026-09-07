@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/geography-guessr/static/css/main.5b02bf6a.css",
-    "main.js": "/geography-guessr/static/js/main.cec21798.js",
+    "main.js": "/geography-guessr/static/js/main.14ee4f70.js",
     "static/js/453.deae4cad.chunk.js": "/geography-guessr/static/js/453.deae4cad.chunk.js",
     "static/media/front_page_bg.png": "/geography-guessr/static/media/front_page_bg.51191204222e968d4e43.png",
     "index.html": "/geography-guessr/index.html",
     "main.5b02bf6a.css.map": "/geography-guessr/static/css/main.5b02bf6a.css.map",
-    "main.cec21798.js.map": "/geography-guessr/static/js/main.cec21798.js.map",
+    "main.14ee4f70.js.map": "/geography-guessr/static/js/main.14ee4f70.js.map",
     "453.deae4cad.chunk.js.map": "/geography-guessr/static/js/453.deae4cad.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b02bf6a.css",
-    "static/js/main.cec21798.js"
+    "static/js/main.14ee4f70.js"
   ]
 }
