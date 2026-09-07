@@ -17,7 +17,7 @@ guess on a mini-map, and get scored on distance. Three things needed work:
    API's default 50 m search radius meant hundreds to thousands of calls per game.
 
 Difficulty definitions chosen: **easy** = curated major cities and mid-size towns
-worldwide; **medium** = anywhere; **hard** = anywhere plus a 10-minute timer.
+worldwide; **medium** = anywhere; **hard** = anywhere plus a 5-minute timer.
 
 All three bugs had the same shape — **a value that should be set once was being re-applied
 on every React render** — so each got one fix at the source, not per-symptom patches.

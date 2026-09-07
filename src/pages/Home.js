@@ -16,7 +16,7 @@ const HomePage = () => {
                             Medium<br /><small>Anywhere on Earth</small>
                         </Link>
                         <Link to="/geography-guessr/game?difficulty=hard" id="hard" className="column">
-                            Hard<br /><small>Anywhere, 10 minute timer</small>
+                            Hard<br /><small>Anywhere, 5 minute timer</small>
                         </Link>
                     </div>
                 </div>

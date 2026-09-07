@@ -12,7 +12,7 @@ const libraries = ['places'];
 const SEARCH_RADIUS_M = 50000;
 const BATCH_SIZE = 5;
 const MAX_BATCHES = 12;
-const HARD_TIME_LIMIT = 10 * 60; // seconds
+const HARD_TIME_LIMIT = 5 * 60; // seconds
 
 // Module-level so its identity never changes: @react-google-maps/api re-applies
 // `options` whenever the object changes, which would fight the player's panning.

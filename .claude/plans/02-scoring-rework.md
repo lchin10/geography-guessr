@@ -48,7 +48,7 @@ the curve near zero and steepens it later — a plateau, then a cliff:
 Medium is the forgiving one. Easy is harsher because you had a recognizable city to work
 from. **Hard matches easy** rather than being the most forgiving: hard is not a harder
 *location* — it draws from the same random pool as medium — it is the same game with a
-10-minute timer, so it gets the demanding curve rather than a bonus for difficulty it
+5-minute timer, so it gets the demanding curve rather than a bonus for difficulty it
 doesn't actually have in its drop points.
 
 Note the reachable maximum distance on Earth is ~20,015 km, and this curve reaches
